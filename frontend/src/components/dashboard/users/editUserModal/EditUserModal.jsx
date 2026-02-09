@@ -102,7 +102,7 @@ function EditUserModal({ show, onHide, userId, onSave }) {
 
     try {
       const body = {
-        id: userId,
+        targetUserId: userId,
         email: userData.email,
         name: userData.name,
         birthDate: userData.birthDate,

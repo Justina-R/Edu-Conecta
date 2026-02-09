@@ -61,7 +61,7 @@ function Users({ searchTerm }) {
   const filtered = users.filter(
     (user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const indexOfLastUser = currentPage * usersPerPage;
@@ -75,16 +75,14 @@ function Users({ searchTerm }) {
     try {
       setError(null);
 
-      const response = await fetch(
-        `${apiUrl}/User/delete?id=${selectedUserId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${apiUrl}/User/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(selectedUserId),
+      });
 
       if (!response.ok) {
         throw new Error(`Error al eliminar usuario (HTTP ${response.status})`);

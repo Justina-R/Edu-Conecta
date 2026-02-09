@@ -45,7 +45,7 @@ const ProfessorFrom = () => {
     setMessage("");
 
     try {
-      const response = await fetch(`${apiUrl}/api/ProfessorRequest/${userId}`, {
+      const response = await fetch(`${apiUrl}/api/ProfessorRequest`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,6 @@ const ProfessorFrom = () => {
         },
         body: JSON.stringify({
           description: values.description,
-          applicantId: userId,
         }),
       });
 
