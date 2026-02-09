@@ -56,7 +56,18 @@ namespace Core.Services
                         $"Email: {newRequest.Applicant.Email}\n" +
                         $"Descripción: {newRequest.Description}";
 
-            await _mailService.SendToAdmins(subject, body);
+            try
+            {
+                await _mailService.SendToAdmins(subject, body);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("MAIL ERROR:");
+                Console.WriteLine(ex.GetType().FullName);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException?.Message);
+            }
             return newRequest;
         }
 
